@@ -24,6 +24,38 @@ class DB_Util :
         ### DB 접속 해제하기
         self.DBClose()
 
+    ##### - "여러건 조회" 시 리스트의 딕셔너리로 변환하는 기능 정의
+    def getFetchAll(self, sql) :
+        try :
+
+            ### 구문 실행하기
+            self.cursor.execute(sql)
+
+            ### 결과 추출하기
+            rows = self.cursor.fetchall()
+
+            ### 조회 결과가 없을 때 처리하기
+            if rows == None :
+                self.DBClose()
+                return [{"RS" : "Data_None"}]
+
+            # 컬럼명 조회 함수 호출
+            col = self.getColName()
+            
+            list_row = []
+            for t in rows:
+                dict_temp = {}
+                for i in range(0, len(col), 1):
+                    dict_temp[col[i]] = t[i]
+                list_row.append(dict_temp)
+            
+            self.DBClose()
+
+        except :
+            self.DBClose()
+            return [{"RS" : "DB_ERROR"}]
+
+        return list_row
 
     ##### - 커서 및 connect 접속 해제하는 기능 정의
     def DBClose(self) :

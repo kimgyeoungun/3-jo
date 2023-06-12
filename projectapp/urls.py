@@ -19,5 +19,7 @@ urlpatterns = [
     path('mypage/',views.mypage),
     # 회원 정보 수정
     path('update_mypage/',views.update_mypage),
+    # 회원 가입
+    path('insert/',views.insert_user),
 
 ]
