@@ -5,7 +5,7 @@ from django.shortcuts import render
     
 def index(request):
     return render(request,		
-                  "projectapp/index.html", 
+                  "projectapp/index1.html", 
                   {})
 
 def board(request):
