@@ -49,7 +49,6 @@ def insert_user(request):
     pw = request.POST.get("pw","ERROR")
     pwChk = request.POST.get("pwChk","ERROR")
 
-
     msg = f"""
             <script type='text/javascript'>
                 alert('{type(l)} / id: {id}, pw: {pw}, pwChk: {pwChk}');
